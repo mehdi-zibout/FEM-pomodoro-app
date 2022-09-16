@@ -17,10 +17,10 @@ function Cercle({
       : 'rgb(216, 129, 248)';
   const textColor =
     color === 'red'
-      ? 'text-red'
+      ? 'hover:text-red'
       : color === 'cyan'
-      ? 'text-cyan'
-      : 'text-purple';
+      ? 'hover:text-cyan'
+      : 'hover:text-purple';
   const getTimerMessage = () => {
     if (!timer.isRunning) {
       if (timer.remaining === settings[timer.type]) return 'start';
@@ -85,7 +85,7 @@ function Cercle({
                 : formatDuration(defaultTime)}
             </h1>
             <button
-              className={`uppercase text-h3 ${textColor} `}
+              className={`uppercase text-h3  ${textColor} `}
               onClick={
                 timer.type === mode
                   ? () =>
