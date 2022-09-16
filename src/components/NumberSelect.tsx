@@ -13,7 +13,7 @@ function NumberSelect({
   label,
 }: NumberSelectProps) {
   return (
-    <>
+    <div className='flex justify-between items-center tablet:flex-col tablet:items-start w-full mb-[0.5rem] '>
       <label
         className='text-body2 text-darkBlue opacity-40 mb-[0.31rem]'
         htmlFor={`${label}`}
@@ -22,7 +22,7 @@ function NumberSelect({
       </label>
       <div
         id='form'
-        className='bg-gray px-[1rem] flex justify-between items-center rounded-[0.625rem] w-[8.75rem] h-[3rem]'
+        className='bg-gray px-[1rem] flex justify-between items-center rounded-[0.625rem] w-[8.75rem] tablet:h-[3rem] h-[2.5rem]'
       >
         <div className='py-[1rem] text-darkBlue'>
           <input
@@ -59,7 +59,7 @@ function NumberSelect({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export default NumberSelect;

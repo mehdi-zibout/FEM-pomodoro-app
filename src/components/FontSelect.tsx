@@ -12,7 +12,7 @@ function FontSelect({
   return (
     <div
       onClick={handleOnClick}
-      className={`rounded-full w-[3.125rem] h-[3.125rem] flex justify-center items-center hover:border-[1px]  ${
+      className={` rounded-full w-[3.125rem] h-[3.125rem] flex justify-center items-center hover:border-[1px] ${
         isSelected ? 'border-black' : 'border-gray cursor-pointer'
       }  `}
     >

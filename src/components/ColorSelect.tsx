@@ -14,7 +14,7 @@ function ColorSelect({
   return (
     <div
       onClick={handleOnClick}
-      className={`rounded-full w-[3.125rem] h-[3.125rem] flex justify-center items-center hover:border-[1px]  border-gray cursor-pointer' `}
+      className={`rounded-full w-[3.125rem] h-[3.125rem] flex justify-center items-center hover:border-[1px]  border-gray cursor-pointer `}
     >
       <button
         className={`rounded-full w-[2.5rem] h-[2.5rem] ${backgroundColor}  flex justify-center items-center `}
@@ -24,7 +24,7 @@ function ColorSelect({
             width='14'
             height='12'
             xmlns='http://www.w3.org/2000/svg'
-            className='-mb-[0.2rem] -mr-[0.2rem] stroke-black'
+            className='-mb-[0.2rem] -mr-[0.1rem] stroke-black'
           >
             <path strokeWidth='3' fill='none' d='M1 5.607 4.393 9l8-8' />
           </svg>

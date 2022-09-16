@@ -3,13 +3,22 @@ type ButtonProps = {
   children: React.ReactNode;
   color: ColorType;
   isActive: boolean;
+  className?: string;
+  onClick(): any;
 };
-function Button({ children, color, isActive }: ButtonProps) {
+function Button({
+  children,
+  color,
+  isActive,
+  className = '',
+  onClick,
+}: ButtonProps) {
   const backgroundColor =
     color === 'red' ? 'bg-red' : color === 'cyan' ? 'bg-cyan' : 'bg-purple';
   return (
     <button
-      className={`rounded-full ${
+      onClick={onClick}
+      className={`rounded-full ${className} ${
         isActive
           ? `text-darkBlue ${backgroundColor}`
           : 'opacity-40 hover:opacity-100'
