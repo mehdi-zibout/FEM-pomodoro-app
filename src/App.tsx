@@ -4,13 +4,25 @@ import Cercle from './components/Cercle';
 import SettingsModal from './components/SettingsModal';
 
 function App() {
-  const [settings, setSettings] = useState<SettingsType>({
-    pomodoro: 0.1,
-    shortBreak: 0.05,
-    longBreak: 15,
-    font: 'font-sans',
-    color: 'red',
+  const [settings, setSettings] = useState<SettingsType>(() => {
+    const defaultSettings: SettingsType = {
+      pomodoro: 25,
+      shortBreak: 5,
+      longBreak: 15,
+      font: 'font-sans',
+      color: 'red',
+    };
+    let storedSettings: string | SettingsType | null =
+      localStorage.getItem('settings');
+    if (storedSettings) {
+      storedSettings = JSON.parse(storedSettings) as SettingsType;
+      return storedSettings || defaultSettings;
+    } else {
+      localStorage.setItem('settings', JSON.stringify(defaultSettings));
+      return defaultSettings;
+    }
   });
+
   const [showSettings, setShowSettings] = useState(false);
   const [mode, setMode] = useState<ModeType>('pomodoro');
   const [timer, setTimer] = useState<{

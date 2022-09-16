@@ -34,7 +34,11 @@ function Cercle({
       if (mode === timer.type) return 'pause';
     }
     if (timer.type === 'pomodoro') {
-      return <div className='tracking-normal'>Enough! I need a break.</div>;
+      return (
+        <div className='tracking-normal text-body1'>
+          Enough! I need a break.
+        </div>
+      );
     }
     if (timer.type === 'longBreak' || timer.type === 'shortBreak') {
       if (mode === 'pomodoro')
@@ -45,9 +49,15 @@ function Cercle({
         );
       if (timer.type === 'longBreak')
         return (
-          <div className='tracking-normal'>I just need a short break.</div>
+          <div className='tracking-normal text-body1'>
+            I just need a short break.
+          </div>
         );
-      return <div className='tracking-normal '>I need a longer break.</div>;
+      return (
+        <div className='tracking-normal  text-body1'>
+          I need a longer break.
+        </div>
+      );
     }
   };
   return (
@@ -69,7 +79,7 @@ function Cercle({
             })}
           />
           <div className='m-auto flex flex-col justify-center items-center h-[16.73rem] w-[16.73rem] tablet:w-[22.875rem] tablet:h-[22.875rem] left-0 right-0 top-0 bottom-0 absolute'>
-            <h1 className='text-h1'>
+            <h1 className='text-h1 text-[5rem] tablet:text-[6.25rem] '>
               {mode === timer.type
                 ? formatDuration(timer.remaining)
                 : formatDuration(defaultTime)}

@@ -194,6 +194,7 @@ function SettingsModal({
             }`}
             onClick={() => {
               setSettings(tempSettings);
+              localStorage.setItem('settings', JSON.stringify(tempSettings));
               setShowSettings(false);
             }}
           >
