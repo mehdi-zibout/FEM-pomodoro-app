@@ -26,7 +26,7 @@ function ColorSelect({
             xmlns='http://www.w3.org/2000/svg'
             className='-mb-[0.2rem] -mr-[0.2rem] stroke-black'
           >
-            <path stroke-width='3' fill='none' d='M1 5.607 4.393 9l8-8' />
+            <path strokeWidth='3' fill='none' d='M1 5.607 4.393 9l8-8' />
           </svg>
         )}
       </button>

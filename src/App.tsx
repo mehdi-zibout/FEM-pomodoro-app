@@ -3,6 +3,7 @@ import Button from './components/Button';
 import ColorSelect from './components/ColorSelect';
 import FontSelect from './components/FontSelect';
 import NumberSelect from './components/NumberSelect';
+import SettingsModal from './components/SettingsModal';
 
 function App() {
   const [settings, setSettings] = useState<SettingsType>({
@@ -12,11 +13,11 @@ function App() {
     font: 'font-sans',
     color: 'red',
   });
-  console.log(settings);
   return (
     <div
       className={`w-screen h-screen ${settings.font} text-blueishGray bg-darkBlue `}
     >
+      <SettingsModal settings={settings} setSettings={setSettings} />
       <div className=''>Hello, World!</div>
       <Button color={settings.color} isActive={true}>
         pomodoro
@@ -87,7 +88,7 @@ export default App;
 
 export type FontType = 'font-sans' | 'font-serif' | 'font-mono';
 export type ColorType = `red` | `cyan` | `purple`;
-type SettingsType = {
+export type SettingsType = {
   pomodoro: number;
   shortBreak: number;
   longBreak: number;

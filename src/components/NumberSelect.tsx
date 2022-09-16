@@ -40,8 +40,8 @@ function NumberSelect({
               <path
                 fill='none'
                 stroke='#1E213F'
-                stroke-opacity='.25'
-                stroke-width='2'
+                strokeOpacity='.25'
+                strokeWidth='2'
                 d='M1 6l6-4 6 4'
               />
             </svg>
@@ -51,8 +51,8 @@ function NumberSelect({
               <path
                 fill='none'
                 stroke='#1E213F'
-                stroke-opacity='.25'
-                stroke-width='2'
+                strokeOpacity='.25'
+                strokeWidth='2'
                 d='M1 1l6 4 6-4'
               />
             </svg>
