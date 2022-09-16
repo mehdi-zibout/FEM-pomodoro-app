@@ -1,23 +1,72 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from './components/Button';
 import Cercle from './components/Cercle';
-import ColorSelect from './components/ColorSelect';
-import FontSelect from './components/FontSelect';
-import NumberSelect from './components/NumberSelect';
 import SettingsModal from './components/SettingsModal';
 
 function App() {
   const [settings, setSettings] = useState<SettingsType>({
-    pomodoro: 25,
-    shortBreak: 5,
+    pomodoro: 0.1,
+    shortBreak: 0.05,
     longBreak: 15,
     font: 'font-sans',
     color: 'red',
   });
   const [showSettings, setShowSettings] = useState(false);
-  const [mode, setMode] = useState<'pomodoro' | 'short break' | 'long break'>(
-    'pomodoro'
-  );
+  const [mode, setMode] = useState<ModeType>('pomodoro');
+  const [timer, setTimer] = useState<{
+    type: ModeType;
+    isRunning: boolean;
+    remaining: number;
+  }>({
+    type: 'pomodoro',
+    isRunning: false,
+    remaining: settings.pomodoro,
+  });
+  const [nmbShortBreaks, setNmbShortBreaks] = useState(0);
+  useEffect(() => {
+    setTimer({ ...timer, remaining: settings[timer.type], isRunning: false });
+  }, [settings.pomodoro, settings.shortBreak, settings.longBreak]);
+  useEffect(() => {
+    const hundredthOfASecond = 1 / 60 / 100;
+    if (
+      timer.remaining < hundredthOfASecond ||
+      (timer.remaining === settings[timer.type] && !timer.isRunning)
+    ) {
+      setTimer({ type: mode, remaining: settings[mode], isRunning: false });
+    }
+  }, [mode]);
+  useEffect(() => {
+    const hundredthOfASecond = 1 / 60 / 100; // unit is minutes
+    if (timer.isRunning && timer.remaining > hundredthOfASecond / 10) {
+      const interval = setTimeout(() => {
+        setTimer({ ...timer, remaining: timer.remaining - hundredthOfASecond });
+      }, 10);
+      return () => {
+        clearInterval(interval);
+      };
+    } else if (timer.remaining <= hundredthOfASecond / 10) {
+      let nextMode: ModeType;
+      if (timer.type !== 'pomodoro') {
+        if (timer.type === 'shortBreak') setNmbShortBreaks(nmbShortBreaks + 1);
+        nextMode = 'pomodoro';
+      } else {
+        if (nmbShortBreaks % 4 === 0 && nmbShortBreaks > 0) {
+          nextMode = 'longBreak';
+          setNmbShortBreaks(0);
+        } else {
+          nextMode = 'shortBreak';
+        }
+      }
+
+      setMode(nextMode);
+      // setTimer({
+      //   type: mode,
+      //   remaining: settings[nextMode],
+      //   isRunning: false,
+      // });
+    }
+  }, [timer.isRunning, timer.remaining]);
+
   return (
     <main
       className={`w-screen h-screen ${settings.font} text-blueishGray bg-darkBlue flex flex-col items-center justify-around `}
@@ -37,30 +86,40 @@ function App() {
           />
         </svg>
       </div>
-      <div className='w-[26rem] tablet:w-[28.32rem] p-[0.5rem] h-[3.93rem] rounded-full bg-black flex justify-center items-center'>
+      <div className='w-[26rem] tablet:w-[24.32rem] p-[0.5rem] h-[3.93rem] rounded-full bg-black flex justify-center items-center'>
         <Button
           color={settings.color}
           isActive={mode === 'pomodoro'}
           className='text-[0.8rem]  tablet:text-[0.875rem]'
+          onClick={() => setMode('pomodoro')}
         >
           pomodoro
         </Button>
         <Button
           color={settings.color}
-          isActive={mode === 'short break'}
+          isActive={mode === 'shortBreak'}
           className='text-[0.8rem]  tablet:text-[0.875rem]'
+          onClick={() => setMode('shortBreak')}
         >
           short break
         </Button>
         <Button
           color={settings.color}
-          isActive={mode === 'long break'}
+          isActive={mode === 'longBreak'}
           className='text-[0.8rem]  tablet:text-[0.875rem]'
+          onClick={() => setMode('longBreak')}
         >
           long break
         </Button>
       </div>
-      <Cercle />
+      <Cercle
+        mode={mode}
+        color={settings.color}
+        defaultTime={settings[mode]}
+        timer={timer}
+        setTimer={setTimer}
+        settings={settings}
+      />
       <button onClick={() => setShowSettings(true)}>
         <svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'>
           <path
@@ -85,3 +144,4 @@ export type SettingsType = {
   font: FontType;
   color: ColorType;
 };
+export type ModeType = 'pomodoro' | 'shortBreak' | 'longBreak';
