@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from './components/Button';
 import FontSelect from './components/FontSelect';
+import NumberSelect from './components/NumberSelect';
 
 function App() {
   const [settings, setSettings] = useState<SettingsType>({
@@ -25,6 +26,27 @@ function App() {
         <FontSelect font={settings.font} isSelected={true} />
         <FontSelect font={'font-serif'} />
         <FontSelect font={'font-mono'} />
+      </div>
+      <div className=''>
+        <NumberSelect
+          label='pomodoro'
+          value={settings.pomodoro}
+          increment={() =>
+            setSettings({ ...settings, pomodoro: settings.pomodoro + 1 })
+          }
+          decrement={() => {
+            if (settings.pomodoro === 0) {
+              return;
+            }
+            setSettings({ ...settings, pomodoro: settings.pomodoro - 1 });
+          }}
+          handleChange={(value) => {
+            if (isNaN(value)) {
+              return;
+            }
+            setSettings({ ...settings, pomodoro: value });
+          }}
+        />
       </div>
     </div>
   );
