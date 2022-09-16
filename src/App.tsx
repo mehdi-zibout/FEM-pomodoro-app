@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from './components/Button';
+import FontSelect from './components/FontSelect';
 
 function App() {
   const [settings, setSettings] = useState<SettingsType>({
@@ -20,13 +21,18 @@ function App() {
       <Button color='red' isActive={false}>
         short break
       </Button>
+      <div className='flex justify-evenly'>
+        <FontSelect font={settings.font} isSelected={true} />
+        <FontSelect font={'font-serif'} />
+        <FontSelect font={'font-mono'} />
+      </div>
     </div>
   );
 }
 
 export default App;
 
-type FontType = 'font-sans' | 'font-serif' | 'font-mono';
+export type FontType = 'font-sans' | 'font-serif' | 'font-mono';
 export type ColorType = `red` | `cyan` | `purple`;
 type SettingsType = {
   pomodoro: number;
