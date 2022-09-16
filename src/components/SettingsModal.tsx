@@ -8,18 +8,29 @@ import NumberSelect from './NumberSelect';
 function SettingsModal({
   settings,
   setSettings,
+  setShowSettings,
 }: {
   settings: SettingsType;
   setSettings: React.Dispatch<React.SetStateAction<SettingsType>>;
+  setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [tempSettings, setTempSettings] = useState(settings);
 
   return (
-    <div className='w-screen h-screen z-40 fixed flex justify-center items-center bg-[#0A0C1C] bg-opacity-50'>
-      <div className='bg-white relative tablet:rounded-[25px] rounded-[15px] tablet:py-[2.125rem] py-[1rem] z-50 tablet:w-[33.75rem] tablet:h-[29em] w-[20.43rem] h-[34.32rem]'>
+    <div
+      onClick={() => setShowSettings(false)}
+      className='w-screen h-screen z-40 fixed flex justify-center items-center bg-[#0A0C1C] bg-opacity-50'
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className='bg-white relative tablet:rounded-[25px] rounded-[15px] tablet:py-[2.125rem] py-[1rem] z-50 tablet:w-[33.75rem] tablet:h-[29em] w-[20.43rem] h-[34.32rem]'
+      >
         <div className='px-[1.5rem] tablet:px-[2.5rem]  text-[1.25rem] leading-6 tablet:text-[1.75rem] tablet:leading-9 tablet:pb-[2rem] pb-[1.44rem] text-black border-b-[1px] border-[#E3E1E1] flex justify-between items-center'>
           <div> Settings</div>
-          <div className='cursor-pointer'>
+          <div
+            className='cursor-pointer'
+            onClick={() => setShowSettings(false)}
+          >
             <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'>
               <path
                 fill='#1E213F'
@@ -181,7 +192,10 @@ function SettingsModal({
             className={`w-[8.75rem] ${
               settings.color === 'cyan' ? 'text-black ' : 'text-white'
             }`}
-            onClick={() => setSettings(tempSettings)}
+            onClick={() => {
+              setSettings(tempSettings);
+              setShowSettings(false);
+            }}
           >
             Apply
           </Button>

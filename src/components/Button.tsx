@@ -4,7 +4,7 @@ type ButtonProps = {
   color: ColorType;
   isActive: boolean;
   className?: string;
-  onClick(): any;
+  onClick?: () => any;
 };
 function Button({
   children,
