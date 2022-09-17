@@ -44,7 +44,7 @@ function Cercle({
       if (mode === 'pomodoro')
         return (
           <div className='tracking-normal text-body1'>
-            Breaks are boring! I want to work.
+            Breaks are boring! <br /> I want to work.
           </div>
         );
       if (timer.type === 'longBreak')
