@@ -50,13 +50,26 @@ function App() {
   useEffect(() => {
     const hundredthOfASecond = 1 / 60 / 100; // unit is minutes
     if (timer.isRunning && timer.remaining > hundredthOfASecond / 10) {
-      const interval = setTimeout(() => {
-        setTimer({ ...timer, remaining: timer.remaining - hundredthOfASecond });
-      }, 10);
-      return () => {
-        clearInterval(interval);
-      };
-    } else if (timer.remaining <= hundredthOfASecond / 10) {
+      if (document.hidden) {
+        const interval = setTimeout(() => {
+          setTimer({ ...timer, remaining: timer.remaining - 1 / 60 });
+        }, 1000);
+        return () => {
+          clearInterval(interval);
+        };
+      } else {
+        const interval = setTimeout(() => {
+          setTimer({
+            ...timer,
+            remaining: timer.remaining - hundredthOfASecond,
+          });
+        }, 10);
+        return () => {
+          clearInterval(interval);
+        };
+      }
+    }
+    if (timer.remaining <= hundredthOfASecond / 10) {
       let nextMode: ModeType;
       if (timer.type !== 'pomodoro') {
         if (timer.type === 'shortBreak') setNmbShortBreaks(nmbShortBreaks + 1);
