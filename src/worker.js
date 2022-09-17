@@ -1,4 +1,3 @@
-export {};
 onmessage = (e) => {
   let remaining = e.data;
   setTimeout(() => {
