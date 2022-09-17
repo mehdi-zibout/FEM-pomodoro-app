@@ -64,4 +64,4 @@ in the last challenge I wanted to learn how to customize tailwind config, which 
 ## Author
 
 - Website - [Mehdi Zibout](https://www.zryqv.com)
-- Frontend Mentor - [@mehdizibout](https://www.frontendmentor.io/profile/yourusername)
+- Frontend Mentor - [@mehdizibout](https://www.frontendmentor.io/profile/mehdi-zibout)
