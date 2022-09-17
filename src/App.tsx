@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import Button from './components/Button';
 import Cercle from './components/Cercle';
 import SettingsModal from './components/SettingsModal';
-
-const timerWorker = new Worker('/src/worker.js');
+const timerWorker = new Worker('/src/worker.ts');
 
 function App() {
   const [settings, setSettings] = useState<SettingsType>(() => {
