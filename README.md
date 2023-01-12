@@ -51,11 +51,12 @@ I learnt about `document.hidden` condition, which we can use to alter the behavi
 so I kept looking for a solution and found Web Workers. according to mdn
 
 > Web Workers are a simple means for web content to run scripts in background threads.
-> which is exactly what I needed, and with that my pomodoro app is competely functional.
+
+which is exactly what I needed, and with that my pomodoro app is competely functional.
 
 ### Continued development
 
-in the last challenge I wanted to learn how to customize tailwind config, which I did and it saved me a lot of time copying colors and font size in this project. Next I think I'm going to learn css grid and use it for the next challenge. Since everything I built so far was with flexbox, I need to center a div? flexbox. I need a particualr structure? flexbox. I thin
+in the last challenge I wanted to learn how to customize tailwind config, which I did and it saved me a lot of time copying colors and font size in this project.
 
 ### Useful resources
 
